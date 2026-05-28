@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Estimate medical insurance costs from age, BMI, smoking status, and region." />
+  <title>Medical Insurance Cost Predictor</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">Linear regression model</p>
+      <h1>Medical Insurance Cost Predictor</h1>
+      <p class="lead">Enter your profile details to get an estimated annual insurance charge.</p>
+    </header>
+
+    <section class="card" aria-labelledby="form-heading">
+      <h2 id="form-heading" class="sr-only">Prediction form</h2>
+      <form id="predict-form" novalidate>
+        <div class="grid">
+          <label class="field">
+            <span>Age</span>
+            <input type="number" name="age" min="1" max="120" value="30" required />
+          </label>
+
+          <label class="field">
+            <span>Sex</span>
+            <select name="sex" required>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>BMI</span>
+            <input type="number" name="bmi" min="10" max="60" step="0.1" value="25" required />
+          </label>
+
+          <label class="field">
+            <span>Children</span>
+            <input type="number" name="children" min="0" max="15" value="0" required />
+          </label>
+
+          <label class="field">
+            <span>Smoker</span>
+            <select name="smoker" required>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Region</span>
+            <select name="region" required>
+              <option value="southeast">Southeast</option>
+              <option value="southwest">Southwest</option>
+              <option value="northeast">Northeast</option>
+              <option value="northwest">Northwest</option>
+            </select>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary">Predict insurance cost</button>
+      </form>
+
+      <output id="result" class="result" hidden>
+        <p class="result-label">Estimated annual cost</p>
+        <p class="result-value" id="result-value"></p>
+      </output>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Model trained on the
+        <a href="https://www.kaggle.com/datasets/mirichoi0218/insurance" target="_blank" rel="noopener noreferrer">insurance dataset</a>.
+        Training code lives in <code>ml/</code>.
+      </p>
+    </footer>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
