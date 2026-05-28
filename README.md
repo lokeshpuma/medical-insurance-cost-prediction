@@ -8,7 +8,12 @@ After deployment, open:
 
 **https://lokeshpuma.github.io/medical-insurance-cost-prediction/**
 
-Enable GitHub Pages once: **Settings → Pages → Build and deployment → GitHub Actions**.
+Enable GitHub Pages once (after the first workflow run creates the `gh-pages` branch):
+
+1. Open **Settings → Pages**
+2. Under **Build and deployment**, set **Source** to **Deploy from a branch**
+3. Choose branch **`gh-pages`**, folder **`/ (root)`**
+4. Save — the site URL appears at the top of the Pages settings page
 
 ## Features
 
