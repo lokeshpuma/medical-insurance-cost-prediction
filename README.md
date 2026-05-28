@@ -1,41 +1,57 @@
 # Medical Insurance Cost Predictor
 
-This Streamlit application predicts estimated medical insurance costs based on user inputs such as age, sex, BMI, number of children, smoking habits, and region.
+A machine learning project that estimates annual medical insurance charges from demographic and health inputs. The **live predictor** runs as a static site on GitHub Pages; training artifacts and notebooks live under `ml/`.
+
+## Live demo
+
+After deployment, open:
+
+**https://lokeshpuma.github.io/medical-insurance-cost-prediction/**
+
+Enable GitHub Pages once: **Settings → Pages → Build and deployment → GitHub Actions**.
 
 ## Features
 
-- **Machine Learning Model**: Built using a Linear Regression model trained on a medical insurance dataset.
-- **Interactive UI**: Simple and easy-to-use web interface powered by Streamlit.
-- **Instant Predictions**: Get real-time cost estimates based on your profile.
+- **Linear regression model** trained on the [insurance dataset](https://www.kaggle.com/datasets/mirichoi0218/insurance)
+- **Static web UI** (HTML/CSS/JS) — no server required for predictions
+- **Automated deploy** via GitHub Actions on every push to `main`
 
-## Setup Instructions
+## Repository layout
 
-1. **Clone the repository** (if applicable) or download the files.
-2. **Create and activate a Conda environment**:
-   ```bash
-   conda create -n tf python=3.12
-   conda activate tf
-   ```
-3. **Install the required dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Run the Streamlit application**:
-   ```bash
-   streamlit run app.py
-   ```
+| Path | Description |
+|------|-------------|
+| `index.html` | Predictor page (GitHub Pages entry) |
+| `assets/` | Styles and client-side prediction logic |
+| `ml/insurance.csv` | Training data |
+| `ml/medical_insurance.ipynb` | EDA and model training |
+| `ml/medical_insurance_model.pkl` | Serialized scikit-learn model |
+| `ml/test_model.py` | Quick model smoke test |
 
-## Files in the Repository
+## Local development
 
-- `app.py`: The main Streamlit application script.
-- `medical_insurance_model.pkl`: The pre-trained machine learning model.
-- `requirements.txt`: List of required Python packages to run the app.
-- `medical_insurance.ipynb`: The Jupyter Notebook used for exploratory data analysis and model training.
-- `insurance.csv`: The dataset used to train the model.
+### Run the website locally
+
+```bash
+python3 -m http.server 8080
+```
+
+Open [http://localhost:8080](http://localhost:8080).
+
+### Retrain or verify the model
+
+```bash
+pip install -r ml/requirements.txt
+python ml/test_model.py
+```
+
+Use `ml/medical_insurance.ipynb` for full exploratory analysis and training.
 
 ## Usage
 
-1. Open the application in your browser (typically `http://localhost:8501`).
-2. Enter your **Age**, **Sex**, **BMI**, **Number of Children**, whether you are a **Smoker**, and your **Region**.
-3. Click the **"Predict Insurance Cost"** button.
-4. The estimated medical insurance cost will be displayed instantly on the screen.
+1. Open the live site (or local server).
+2. Enter **age**, **sex**, **BMI**, **children**, **smoker**, and **region**.
+3. Click **Predict insurance cost** to see the estimated annual charge.
+
+## About
+
+Predictions in the browser use the same linear regression coefficients as the Python model in `ml/medical_insurance_model.pkl`. Categorical fields use the same encodings as the notebook (`sex`, `smoker`, `region`).
